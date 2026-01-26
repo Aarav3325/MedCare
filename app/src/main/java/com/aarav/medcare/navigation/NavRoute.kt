@@ -1,0 +1,22 @@
+package com.aarav.medcare.navigation
+
+sealed class NavRoute(val path: String) {
+    object Splash: NavRoute("splash")
+    object AuthSplash: NavRoute("authSplash")
+    object Register: NavRoute("register")
+    object Login: NavRoute("login")
+    object OTP: NavRoute("otp")
+    object Verification: NavRoute("verification")
+    object Home: NavRoute("home")
+    object Services: NavRoute("services")
+    object ChatDoctor: NavRoute("chatDoctor")
+    object DoctorDetail: NavRoute("doctorDetail")
+    object Confirmation: NavRoute("confirmation")
+    object AppointmentSuccess: NavRoute("appointmentSuccess")
+    object Shopping: NavRoute("shopping")
+    object ProductDetail: NavRoute("productDetail")
+    object History: NavRoute("history")
+    object Profile: NavRoute("profile")
+    object Main: NavRoute("main")
+    object OnBoard: NavRoute("onBoard")
+}

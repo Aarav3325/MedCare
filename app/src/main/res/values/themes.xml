@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Launch theme (controls system splash) -->
+    <style name="Theme.MedCare.Launch" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/transparent</item>
+        <item name="windowSplashScreenAnimatedIcon">@null</item>
+        <item name="windowSplashScreenAnimationDuration">0</item>
+        <item name="postSplashScreenTheme">@style/Theme.MedCare</item>
+    </style>
+
+    <style name="Theme.MedCare" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
