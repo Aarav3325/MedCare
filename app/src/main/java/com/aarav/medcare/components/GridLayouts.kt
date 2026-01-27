@@ -70,10 +70,13 @@ fun ServiceItemLayout(
         modifier = Modifier
             .padding(8.dp)
             .size(82.dp)
-            .clickable {
+            .shadow(4.dp, RectangleShape)
+            .clickable(
+                indication = null,
+                interactionSource = null
+            ) {
                 onClick()
-            }
-            .shadow(4.dp, RectangleShape),
+            },
         //.size(width = 104.dp, height = 92.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White

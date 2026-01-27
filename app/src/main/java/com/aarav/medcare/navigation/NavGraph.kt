@@ -22,6 +22,9 @@ import com.aarav.medcare.services.chatdoctor.AppointmentSuccessScreen
 import com.aarav.medcare.services.chatdoctor.ChatDoctorScreen
 import com.aarav.medcare.services.chatdoctor.ConfirmationScreen
 import com.aarav.medcare.services.chatdoctor.DoctorDetailScreen
+import com.aarav.medcare.services.hospital.HospitalListScreen
+import com.aarav.medcare.services.shopping.CartScreen
+import com.aarav.medcare.services.shopping.FindingPharmacy
 import com.aarav.medcare.services.shopping.ProductDetailScreen
 import com.aarav.medcare.services.shopping.ShoppingScreen
 
@@ -47,6 +50,9 @@ fun NavGraph(navHostController: NavHostController, modifier: Modifier) {
         addHistoryScreen(navHostController, this)
         addShoppingScreen(navHostController, this)
         addProductDetailScreen(navHostController, this)
+        addCartScreen(navHostController, this)
+        addFindingPharmacyScreen(navHostController, this)
+        addHospitalListScreen(navHostController, this)
     }
 }
 
@@ -284,6 +290,9 @@ fun addShoppingScreen(navController: NavController, navGraphBuilder: NavGraphBui
         route = NavRoute.Shopping.path
     ) {
         ShoppingScreen(
+            navigateToCart = {
+                navController.navigate(NavRoute.Cart.path)
+            },
             navigateToDetail = {
                 navController.navigate(NavRoute.ProductDetail.path)
             },
@@ -299,6 +308,45 @@ fun addProductDetailScreen(navController: NavController, navGraphBuilder: NavGra
         route = NavRoute.ProductDetail.path
     ) {
         ProductDetailScreen(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun addCartScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Cart.path
+    ) {
+        CartScreen(
+            back = {
+                navController.popBackStack()
+            },
+            onContinueClick = {
+                navController.navigate(NavRoute.FindingPharmacy.path) {
+                    popUpTo(NavRoute.Cart.path) {
+                        inclusive = true
+                    }
+                }
+            }
+        )
+    }
+}
+
+fun addFindingPharmacyScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.FindingPharmacy.path
+    ) {
+        FindingPharmacy()
+    }
+}
+
+fun addHospitalListScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.HospitalList.path
+    ) {
+        HospitalListScreen(
             back = {
                 navController.popBackStack()
             }

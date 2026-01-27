@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -40,8 +39,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -56,6 +57,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aarav.medcare.R
+import com.aarav.medcare.components.CartBottomSheet
+import com.aarav.medcare.components.CustomButtonSheets
 import com.aarav.medcare.components.FilterChipsShopping
 import com.aarav.medcare.components.SearchBarShopping
 import com.aarav.medcare.services.BrandDetails
@@ -73,6 +76,7 @@ enum class ShoppingFilters(val label: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingScreen(
+    navigateToCart: () -> Unit,
     navigateToDetail: () -> Unit,
     back: () -> Unit
 ) {
@@ -102,7 +106,9 @@ fun ShoppingScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = {
+                        navigateToCart()
+                    }) {
                         Icon(
                             painter = painterResource(R.drawable.solar_cart_3_outline),
                             contentDescription = "cart icon",
@@ -162,7 +168,7 @@ fun ShoppingScreen(
             selectedFilter?.let {
                 ProductColumnLayout(productList, navigateToDetail)
             }
-                ?:  Column(
+                ?: Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
@@ -174,13 +180,15 @@ fun ShoppingScreen(
                     SalesSection(
                         navigateToDetail,
                         productList,
-                        "Hot Sales"
+                        "Hot Sales",
+                        Modifier.padding(16.dp)
                     )
 
                     SalesSection(
                         navigateToDetail,
                         productList,
-                        "Recently Viewed"
+                        "Recently Viewed",
+                        Modifier.padding(16.dp)
                     )
                 }
         }
@@ -191,10 +199,11 @@ fun ShoppingScreen(
 fun SalesSection(
     onClick: () -> Unit,
     itemList: List<Product>,
-    title: String
+    title: String,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
     ) {
@@ -203,7 +212,6 @@ fun SalesSection(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
         ) {
             Text(
                 title,
@@ -223,7 +231,7 @@ fun SalesSection(
         }
 
         LazyRow(
-            modifier = Modifier.padding(start = 12.dp)
+            modifier = Modifier.padding(start = 0.dp)
         ) {
             items(itemList) { product ->
                 ProductLayout(product, onClick)
@@ -379,12 +387,50 @@ fun BrandStore(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun ProductLayout(
     product: Product,
     onClick: () -> Unit
 ) {
+
+    var count by remember {
+        mutableIntStateOf(0)
+    }
+
+    var showModal by remember {
+        mutableStateOf(false)
+    }
+
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false
+    )
+
+    if (showModal) {
+        CustomButtonSheets(
+            sheetState,
+            onDismiss = { showModal = false },
+        ) {
+            CartBottomSheet(
+                product,
+                count,
+                onDismiss = { showModal = false },
+                onDecrease = {
+                    if (count > 0) {
+                        count -= 1
+                    }
+                    if (count == 0) {
+                        showModal = false
+                    }
+                },
+                onIncrease = {
+                    count += 1
+                }
+            )
+        }
+    }
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -469,7 +515,10 @@ fun ProductLayout(
                 }
 
                 FilledTonalButton(
-                    onClick = {},
+                    onClick = {
+                        showModal = true
+                        count++
+                    },
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
                         .height(32.dp)
@@ -503,8 +552,7 @@ fun ProductColumnLayout(
         modifier = Modifier.padding(horizontal = 8.dp),
         columns = GridCells.Fixed(2)
     ) {
-        items(productList) {
-            product -> 
+        items(productList) { product ->
             ProductLayout(product, onClick)
         }
     }

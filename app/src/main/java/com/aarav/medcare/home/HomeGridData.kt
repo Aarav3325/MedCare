@@ -1,5 +1,6 @@
 package com.aarav.medcare.home
 
+import androidx.navigation.compose.NavHost
 import com.aarav.medcare.R
 import com.aarav.medcare.navigation.NavRoute
 
@@ -28,7 +29,6 @@ data class Article(
     val tag: String,
     val date: String
 )
-
 object HomeGridData {
     val serviceList = listOf(
         ServiceItem("All", R.drawable.all),
@@ -43,7 +43,7 @@ object HomeGridData {
 
     val serviceList2 = listOf(
         ServiceItem("Chat Doctor", R.drawable.chat_docter, NavRoute.ChatDoctor.path),
-        ServiceItem("Hospitals", R.drawable.hospitals),
+        ServiceItem("Hospitals", R.drawable.hospitals, NavRoute.HospitalList.path),
         ServiceItem("Emergency Services", R.drawable.emergency),
         ServiceItem("Article", R.drawable.article),
         ServiceItem("Medication Reminder", R.drawable.medication),
@@ -74,5 +74,7 @@ object HomeGridData {
             "Healthy Lifestyle",
             "14 - Jun - 2023")
     )
+
+
 }
 

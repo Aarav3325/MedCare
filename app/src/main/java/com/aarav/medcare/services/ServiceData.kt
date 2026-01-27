@@ -29,6 +29,16 @@ data class Product(
     val price: Double
 )
 
+
+
+data class HospitalInfo(
+    val image: Int,
+    val name: String,
+    val address: String,
+    val telephone: String
+)
+
+
 data class BrandDetails(
     val logo: Int
 )
@@ -175,6 +185,39 @@ object ServiceData {
             "STRIP NEURODEX 10 TABLET",
             "Per strip",
             2.00
+        ),
+        Product(
+            R.drawable.product_image4,
+            "Bufect Strip of 4 Tablets -Heat and Pain Relief Medicine",
+            "Per strip",
+            2.00
+        )
+    )
+
+    val hospitalInfoList = listOf(
+        HospitalInfo(
+            R.drawable.hospital1,
+            "Ospedale San Raffaele",
+            "Via Olgettina, 60, 20132 Milano MI, Italy",
+            "(+22) 2361 6257 1726"
+        ),
+        HospitalInfo(
+            R.drawable.hospital2,
+            "Ospedale San Raffaele",
+            "Via Olgettina, 60, 20132 Milano MI, Italy",
+            "(+22) 2361 6257 1726"
+        ),
+        HospitalInfo(
+            R.drawable.hospital3,
+            "IRCCS Istituto Ortopedico Galeazzi",
+            "Via Riccardo Galeazzi, 4, 20161 Milano MI, Italy",
+            "(+22) 2361 6257 1726"
+        ),
+        HospitalInfo(
+            R.drawable.hospital1,
+            "Ospedale San Raffaele",
+            "Via Olgettina, 60, 20132 Milano MI, Italy",
+            "(+22) 2361 6257 1726"
         ),
     )
 }

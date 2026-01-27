@@ -127,8 +127,8 @@ fun DoctorDetailScreen(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(it)
+                .fillMaxSize()
         ) {
             val timings = ServiceData.timings
             val scheduleList = ServiceData.schedule
@@ -165,13 +165,14 @@ fun DoctorDetailScreen(
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(16.dp)
-                    .fillMaxWidth(),
+                    .background(Color.White)
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
                 FilledTonalButton(
-                    modifier = Modifier.height(48.dp),
+                    modifier = Modifier.height(48.dp).weight(1f),
                     onClick = {},
                     shape = RoundedCornerShape(24.dp),
                     border = BorderStroke(1.dp, Color(0xFF26408B)),
@@ -200,7 +201,7 @@ fun DoctorDetailScreen(
                 Spacer(Modifier.width(12.dp))
 
                 FilledTonalButton(
-                    modifier = Modifier.height(48.dp),
+                    modifier = Modifier.height(48.dp).weight(2f),
                     onClick = {
                         navigateToConfirmation()
                     },
