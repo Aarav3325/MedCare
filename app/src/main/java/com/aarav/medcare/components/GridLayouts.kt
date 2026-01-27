@@ -40,12 +40,12 @@ import com.aarav.medcare.ui.theme.sora
 @Composable
 fun ServicesGrid(
     serviceList: List<ServiceItem>,
-    navController: NavController
+    navController: NavController? = null
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(count = 4),
         modifier = Modifier
-            .padding(16.dp)
+            .padding(8.dp)
             .height(202.dp),
     ) {
         items(
@@ -53,7 +53,7 @@ fun ServicesGrid(
         ) { service ->
             ServiceItemLayout(service) {
                 service.route?.let {
-                    navController.navigate(it)
+                    navController?.navigate(it)
                 }
             }
         }

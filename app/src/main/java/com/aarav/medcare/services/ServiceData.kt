@@ -12,6 +12,13 @@ data class Review(
     val review: String
 )
 
+data class RoomType(
+    val type: String,
+    val supporting: String? = null,
+    val beds: Int,
+    val remaining: Int,
+    val price: String
+)
 
 data class Appointment(
     val doctorImage: Int,
@@ -219,5 +226,34 @@ object ServiceData {
             "Via Olgettina, 60, 20132 Milano MI, Italy",
             "(+22) 2361 6257 1726"
         ),
+    )
+
+    val roomType = listOf(
+        RoomType(
+            "General Ward",
+            supporting = "(4 persons per room)",
+            beds = 120,
+            remaining = 10,
+            price = "$100-$150"
+        ),
+        RoomType(
+            "Semi-Private Rooms",
+            supporting = "(2 persons per room)",
+            beds = 80,
+            remaining = 30,
+            price = "$170-$210  "
+        ),
+        RoomType(
+            "Private Rooms",
+            beds = 40,
+            remaining = 20,
+            price = "$350-$450"
+        ),
+        RoomType(
+            "Deluxe Suites",
+            beds = 12,
+            remaining = 0,
+            price = "$600-$1000"
+        )
     )
 }
