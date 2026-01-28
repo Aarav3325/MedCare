@@ -63,6 +63,7 @@ import androidx.compose.ui.unit.sp
 import com.aarav.medcare.components.AuthScreenTextFields
 import com.aarav.medcare.components.GenderDropDown
 import com.aarav.medcare.components.PhoneNumberTextField
+import com.aarav.medcare.ui.theme.sora
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -280,7 +281,11 @@ fun RegisterContent(phoneVisible: Boolean,
 
             Spacer(Modifier.height(26.dp))
 
-            DatePickerFieldToModal()
+            DatePickerFieldToModal(
+                "Date of birth",
+                Color(0xFF26408B),
+                "Select your date of birth",
+            )
 
 
             Spacer(Modifier.height(26.dp))
@@ -372,15 +377,21 @@ fun RegisterContent(phoneVisible: Boolean,
 }
 
 @Composable
-fun DatePickerFieldToModal(modifier: Modifier = Modifier) {
+fun DatePickerFieldToModal(
+    title: String,
+    titleColor: Color,
+    placeholder: String,
+    modifier: Modifier = Modifier
+) {
     var selectedDate by remember { mutableStateOf<Long?>(null) }
     var showModal by remember { mutableStateOf(false) }
 
     Text(
-        text = "Date of birth",
-        fontSize = 16.sp,
+        text = title,
+        fontSize = 14.sp,
+        fontFamily = sora,
         fontWeight = FontWeight.SemiBold,
-        color = Color(0xFF26408B)
+        color = titleColor
     )
 
     Spacer(Modifier.height(8.dp))
@@ -388,7 +399,7 @@ fun DatePickerFieldToModal(modifier: Modifier = Modifier) {
     OutlinedTextField(
         value = selectedDate?.let { convertMillisToDate(it) } ?: "",
         onValueChange = { },
-        placeholder = { Text("Select your date of birth") },
+        placeholder = { Text(placeholder) },
         trailingIcon = {
             Icon(Icons.Default.DateRange, contentDescription = "Select date")
         },

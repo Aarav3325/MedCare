@@ -2,7 +2,6 @@ package com.aarav.medcare.services
 
 import com.aarav.medcare.R
 import com.aarav.medcare.home.Doctor
-import com.aarav.medcare.services.chatdoctor.ReviewBox
 
 data class Review(
     val name: String,
@@ -37,7 +36,6 @@ data class Product(
 )
 
 
-
 data class HospitalInfo(
     val image: Int,
     val name: String,
@@ -49,45 +47,53 @@ data class HospitalInfo(
 data class BrandDetails(
     val logo: Int
 )
+
 object ServiceData {
     val doctorList = listOf(
-        Doctor("Dr. Luca Rossi",
+        Doctor(
+            "Dr. Luca Rossi",
             R.drawable.doctor1,
             "Cardiology Specialist",
             "3 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Marco Ferrari",
+        Doctor(
+            "Dr. Marco Ferrari",
             R.drawable.doctor2,
             "Orthopedics Specialist",
             "3 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Sofia Müller",
+        Doctor(
+            "Dr. Sofia Müller",
             R.drawable.doctor3,
             "Dermatology Specialist",
             "6 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Rajesh Patel",
+        Doctor(
+            "Dr. Rajesh Patel",
             R.drawable.doctor4,
             "General Surgery",
             "2 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Leonard Campbell",
+        Doctor(
+            "Dr. Leonard Campbell",
             R.drawable.image71,
             "Heart Specialist",
             "4 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Gabriel Smith",
+        Doctor(
+            "Dr. Gabriel Smith",
             R.drawable.image72,
             "Dentist",
             "3 Years",
             "Available on Wed - Sat"
         ),
-        Doctor("Dr. Leonard Campbell",
+        Doctor(
+            "Dr. Leonard Campbell",
             R.drawable.image71,
             "Heart Specialist",
             "4 Years",
@@ -102,7 +108,7 @@ object ServiceData {
         "2:00 PM",
         "3:00 PM",
         "4:00 PM",
-        )
+    )
 
     val schedule = listOf(
         Pair("Wed", "22"),
@@ -112,7 +118,7 @@ object ServiceData {
         Pair("Sun", "26"),
         Pair("Mon", "27"),
         Pair("Tue", "28"),
-        )
+    )
 
     val reviewList = listOf(
         Review(

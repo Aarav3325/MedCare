@@ -22,7 +22,12 @@ import com.aarav.medcare.services.chatdoctor.AppointmentSuccessScreen
 import com.aarav.medcare.services.chatdoctor.ChatDoctorScreen
 import com.aarav.medcare.services.chatdoctor.ConfirmationScreen
 import com.aarav.medcare.services.chatdoctor.DoctorDetailScreen
+import com.aarav.medcare.services.hospital.HospitalDetailScreen
 import com.aarav.medcare.services.hospital.HospitalListScreen
+import com.aarav.medcare.services.hospital.HospitalMapScreen
+import com.aarav.medcare.services.reminder.AddMedicine
+import com.aarav.medcare.services.reminder.MedicationReminder
+import com.aarav.medcare.services.reminder.MedicationReminderEmpty
 import com.aarav.medcare.services.shopping.CartScreen
 import com.aarav.medcare.services.shopping.FindingPharmacy
 import com.aarav.medcare.services.shopping.ProductDetailScreen
@@ -53,6 +58,11 @@ fun NavGraph(navHostController: NavHostController, modifier: Modifier) {
         addCartScreen(navHostController, this)
         addFindingPharmacyScreen(navHostController, this)
         addHospitalListScreen(navHostController, this)
+        addHospitalDetailScreen(navHostController, this)
+        addHospitalMapScreen(navHostController, this)
+        addMedicationReminderScreen(navHostController, this)
+        addAllReminderScreen(navHostController, this)
+        addAddMedicineScreen(navHostController, this)
     }
 }
 
@@ -349,6 +359,89 @@ fun addHospitalListScreen(navController: NavController, navGraphBuilder: NavGrap
         HospitalListScreen(
             back = {
                 navController.popBackStack()
+            },
+            navigateToDetail = {
+                navController.navigate(NavRoute.HospitalDetail.path)
+            },
+            navigateToMap = {
+                navController.navigate(NavRoute.HospitalMap.path)
+            }
+        )
+    }
+}
+
+
+fun addHospitalDetailScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.HospitalDetail.path
+    ) {
+        HospitalDetailScreen(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToMap = {
+                navController.navigate(NavRoute.HospitalMap.path)
+            }
+        )
+    }
+}
+
+
+fun addHospitalMapScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.HospitalMap.path
+    ) {
+        HospitalMapScreen()
+    }
+}
+
+fun addMedicationReminderScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.MedicationReminder.path
+    ) {
+        MedicationReminder(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToAll = {
+                navController.navigate(NavRoute.AllReminders.path)
+            },
+            navigateToAddMedicine = {
+                navController.navigate(NavRoute.AddMedicine.path)
+            }
+        )
+    }
+}
+
+fun addAllReminderScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.AllReminders.path
+    ) {
+        MedicationReminderEmpty(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToAddMedicine = {
+                navController.navigate(NavRoute.AddMedicine.path)
+            }
+        )
+    }
+}
+
+fun addAddMedicineScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.AddMedicine.path
+    ) {
+        AddMedicine(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToAllReminders = {
+                navController.navigate(NavRoute.AllReminders.path) {
+                    popUpTo(NavRoute.AddMedicine.path) {
+                        inclusive = true
+                    }
+                }
             }
         )
     }

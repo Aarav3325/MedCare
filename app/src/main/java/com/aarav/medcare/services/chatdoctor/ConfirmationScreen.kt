@@ -363,8 +363,8 @@ fun NotificationSwitch(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
+                .padding(horizontal = 12.dp, vertical = 6.dp)
                 .fillMaxWidth()
-                .padding(8.dp),
         ) {
             Image(
                 painter = painterResource(R.drawable.bell),

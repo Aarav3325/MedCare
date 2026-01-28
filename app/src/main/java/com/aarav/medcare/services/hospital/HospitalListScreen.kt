@@ -57,7 +57,9 @@ import com.aarav.medcare.ui.theme.sora
 @Preview(showBackground = true)
 @Composable
 fun HospitalListScreen(
-    back: () -> Unit
+    back: () -> Unit,
+    navigateToDetail: () -> Unit,
+    navigateToMap: () -> Unit,
 ) {
 
     var expanded by remember {
@@ -103,9 +105,12 @@ fun HospitalListScreen(
             val hospitalList = ServiceData.hospitalInfoList
 
             LazyColumn() {
-                items(hospitalList) {
-                    hospital ->
-                    HospitalInfoCard(hospital)
+                items(hospitalList) { hospital ->
+                    HospitalInfoCard(
+                        hospitalInfo = hospital,
+                        navigateToDetail = navigateToDetail,
+                        navigateToMap = navigateToMap
+                    )
                 }
             }
         }
@@ -147,13 +152,16 @@ fun SearchProvinces() {
 @Preview(showBackground = true)
 @Composable
 fun HospitalInfoCard(
-    hospitalInfo: HospitalInfo
+    modifier: Modifier = Modifier,
+    hospitalInfo: HospitalInfo,
+    navigateToDetail: () -> Unit,
+    navigateToMap: () -> Unit
 ) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
-        modifier = Modifier.padding(bottom = 12.dp, start = 16.dp , end = 16.dp),
+        modifier = modifier.padding(bottom = 12.dp, start = 16.dp, end = 16.dp),
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, Color(0xFFC2E7D9))
     ) {
@@ -240,7 +248,7 @@ fun HospitalInfoCard(
 
                 FilledTonalButton(
                     onClick = {
-
+                        navigateToDetail()
                     },
                     modifier = Modifier
                         .height(38.dp)
@@ -262,7 +270,9 @@ fun HospitalInfoCard(
 
 
                 FilledTonalButton(
-                    onClick = {},
+                    onClick = {
+                        navigateToMap()
+                    },
                     modifier = Modifier
                         .height(38.dp)
                         .weight(1f),

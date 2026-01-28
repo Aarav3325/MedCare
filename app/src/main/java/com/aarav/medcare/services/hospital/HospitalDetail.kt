@@ -17,16 +17,19 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,12 +49,30 @@ import com.aarav.medcare.services.RoomType
 import com.aarav.medcare.services.ServiceData
 import com.aarav.medcare.ui.theme.sora
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun HospitalDetailScreen() {
+fun HospitalDetailScreen(
+    back: () -> Unit,
+    navigateToMap: () -> Unit,
+) {
 
     Scaffold(
-        topBar = {}
+        topBar = {
+            TopAppBar(
+                title = {},
+                navigationIcon = {
+                    IconButton(
+                        onClick = back
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowLeft,
+                            contentDescription = "arrow"
+                        )
+                    }
+                }
+            )
+        }
     ) {
         Box(
             modifier = Modifier
@@ -122,7 +143,7 @@ fun HospitalDetailScreen() {
 
                 FilledTonalButton(
                     onClick = {
-
+                        navigateToMap()
                     },
                     modifier = Modifier
                         .height(52.dp)
@@ -239,7 +260,7 @@ fun RoomTypeCard(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(vertical = 8.dp, horizontal = 16.dp),
         border = BorderStroke(1.dp, Color(0xFFC2E7D9))
     ) {
         Column(
