@@ -2,6 +2,7 @@ package com.aarav.medcare.services
 
 import com.aarav.medcare.R
 import com.aarav.medcare.home.Doctor
+import com.aarav.medcare.services.article.ArticleChips
 
 data class Review(
     val name: String,
@@ -46,6 +47,12 @@ data class HospitalInfo(
 
 data class BrandDetails(
     val logo: Int
+)
+
+data class Article(
+    val image: Int,
+    val title: String,
+    val tag: ArticleChips? = null
 )
 
 object ServiceData {
@@ -261,5 +268,46 @@ object ServiceData {
             remaining = 0,
             price = "$600-$1000"
         )
+    )
+
+    val articleList = listOf(
+        Article(
+            R.drawable.article_image1,
+            "5 Tips for Boosting Your Immune System Naturally"
+        ),
+        Article(
+            R.drawable.article_image2,
+            "The Importance of Mental Health: Strategies for Stress Management"
+        ),
+        Article(
+            R.drawable.article_image3,
+            "Understanding Diabetes: Symptoms, Risk Factors, and Prevention Tips"
+        )
+    )
+
+    val hotTopicList = listOf(
+        Pair("Mental Health", R.drawable.hot_topic1),
+        Pair("Lifestyle", R.drawable.hot_topic2),
+        Pair("Global Health", R.drawable.hot_topic3),
+        Pair("Lifestyle", R.drawable.hot_topic2),
+        Pair("Global Health", R.drawable.hot_topic3)
+    )
+
+    val latestArticle = listOf(
+        Article(
+            R.drawable.article_image4,
+            "Getting to know Hanta Virus Disease from Rodents",
+            ArticleChips.ADULTS
+        ),
+        Article(
+            R.drawable.article_image5,
+            "Getting to know Hanta Virus Disease from Rodents",
+            ArticleChips.INFANTS_AND_TODDLERS
+        ),
+        Article(
+            R.drawable.article_image6,
+            "Getting to know Hanta Virus Disease from Rodents",
+            ArticleChips.ADULTS
+        ),
     )
 }
