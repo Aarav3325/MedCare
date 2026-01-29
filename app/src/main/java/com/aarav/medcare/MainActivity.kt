@@ -32,7 +32,13 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val navItems = listOf(NavRoute.Home.path, NavRoute.Services.path, NavRoute.History.path, NavRoute.Profile.path)
+                val navItems = listOf(NavRoute.Home.path, NavRoute.Services.path, NavRoute.History.path, NavRoute.Profile.path,
+//                    NavRoute.PrescriptionHistory.path,
+//                    NavRoute.HealthHistory.path,
+//                    NavRoute.Transactions.path,
+//                    NavRoute.AccountSettings.path,
+//                    NavRoute.Notifications.path
+                )
 
 
                 val currentRoute = navBackStackEntry?.destination?.route

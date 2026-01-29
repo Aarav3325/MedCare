@@ -17,7 +17,15 @@ import com.aarav.medcare.auth.VerificationScreen
 import com.aarav.medcare.history.HistoryScreen
 import com.aarav.medcare.home.HomeScreen
 import com.aarav.medcare.onboard.OnBoardScreen
+import com.aarav.medcare.profile.AccountSettings
+import com.aarav.medcare.profile.HealthHistory
+import com.aarav.medcare.profile.NotificationScreen
+import com.aarav.medcare.profile.PrescriptionHistory
+import com.aarav.medcare.profile.ProfileScreen
+import com.aarav.medcare.profile.TransactionScreen
 import com.aarav.medcare.services.ServicesScreen
+import com.aarav.medcare.services.article.ArticleDetailScreen
+import com.aarav.medcare.services.article.ArticleScreen
 import com.aarav.medcare.services.chatdoctor.AppointmentSuccessScreen
 import com.aarav.medcare.services.chatdoctor.ChatDoctorScreen
 import com.aarav.medcare.services.chatdoctor.ConfirmationScreen
@@ -63,6 +71,14 @@ fun NavGraph(navHostController: NavHostController, modifier: Modifier) {
         addMedicationReminderScreen(navHostController, this)
         addAllReminderScreen(navHostController, this)
         addAddMedicineScreen(navHostController, this)
+        addArticlesScreen(navHostController, this)
+        addArticleDetailScreen(navHostController, this)
+        AddProfileScreen(navHostController, this)
+        AddPrescriptionHistoryScreen(navHostController, this)
+        AddHealthHistoryScreen(navHostController, this)
+        AddTransactionsScreen(navHostController, this)
+        AddAccountSettingsScreen(navHostController, this)
+        AddNotificationsScreen(navHostController, this)
     }
 }
 
@@ -447,5 +463,103 @@ fun addAddMedicineScreen(navController: NavController, navGraphBuilder: NavGraph
     }
 }
 
+fun addArticlesScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Articles.path
+    ) {
+        ArticleScreen(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToDetail = {
+                navController.navigate(NavRoute.ArticleDetail.path)
+            }
+        )
+    }
+}
 
 
+fun addArticleDetailScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.ArticleDetail.path
+    ) {
+        ArticleDetailScreen(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddProfileScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Profile.path
+    ) {
+        ProfileScreen(
+            back = {
+                navController.popBackStack()
+            },
+            navController
+        )
+    }
+}
+
+fun AddPrescriptionHistoryScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.PrescriptionHistory.path
+    ) {
+        PrescriptionHistory(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddHealthHistoryScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.HealthHistory.path
+    ) {
+        HealthHistory(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddTransactionsScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Transactions.path
+    ) {
+        TransactionScreen(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddAccountSettingsScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.AccountSettings.path
+    ) {
+        AccountSettings(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddNotificationsScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Notifications.path
+    ) {
+        NotificationScreen(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}

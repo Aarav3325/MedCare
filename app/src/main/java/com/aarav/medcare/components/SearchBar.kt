@@ -277,7 +277,7 @@ fun SearchBarArticle(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 filteredList.forEach { article ->
-                    ArticleCard(article)
+                    ArticleCard(article, {})
                 }
             }
 

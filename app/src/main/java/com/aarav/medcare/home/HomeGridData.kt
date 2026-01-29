@@ -45,7 +45,7 @@ object HomeGridData {
         ServiceItem("Chat Doctor", R.drawable.chat_docter, NavRoute.ChatDoctor.path),
         ServiceItem("Hospitals", R.drawable.hospitals, NavRoute.HospitalList.path),
         ServiceItem("Emergency Services", R.drawable.emergency),
-        ServiceItem("Article", R.drawable.article),
+        ServiceItem("Article", R.drawable.article, NavRoute.Articles.path),
         ServiceItem("Medication Reminder", R.drawable.medication, NavRoute.MedicationReminder.path),
         ServiceItem("Specialization", R.drawable.specialization),
         ServiceItem("Health Shop", R.drawable.solar_cart_3_outline, NavRoute.Shopping.path)

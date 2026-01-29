@@ -1,5 +1,7 @@
 package com.aarav.medcare.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,8 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.aarav.medcare.ui.theme.sora
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +90,8 @@ fun MedicineDropDown(
     trailingText: String,
     placeholder: String,
     onValueSelected: (String) -> Unit,
-    listOfValues: List<String>
+    listOfValues: List<String>,
+    modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -95,13 +100,18 @@ fun MedicineDropDown(
         onExpandedChange = {
             expanded = !expanded
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
     ) {
         OutlinedTextField(
             value = if(selectedValue.isEmpty()) "" else "$selectedValue $trailingText",
             onValueChange = {},
             readOnly = true,
+            textStyle = TextStyle(
+                fontWeight = FontWeight.W400,
+                fontSize = 16.sp,
+                fontFamily = sora
+            ),
             placeholder = {
                 Text(text = placeholder)
             },
@@ -113,9 +123,11 @@ fun MedicineDropDown(
                 .menuAnchor()
                 .fillMaxWidth(),
             colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color(0xFF26408B),
                 focusedBorderColor = Color(0xFFA6CFD5),
                 unfocusedBorderColor = Color(0xFFA6CFD5),
-                cursorColor = Color.Transparent
+                cursorColor = Color.Transparent,
+                unfocusedTextColor = Color(0xFF26408B)
             )
         )
 
@@ -123,19 +135,31 @@ fun MedicineDropDown(
             expanded = expanded,
             containerColor = Color.White,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier
         ) {
-
-            listOfValues.forEach { value ->
-                DropdownMenuItem(
-                    modifier = Modifier.fillMaxWidth(),
-
-                    text = { Text(value, fontFamily = sora, fontWeight = FontWeight.Normal) },
-                    onClick = {
-                        onValueSelected(value)
-                        expanded = false
-                    }
-                )
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+            ) {
+                listOfValues.forEach { value ->
+                    DropdownMenuItem(
+                        text = {
+                            Text(
+                                value,
+                                fontFamily = sora,
+                                color = Color(0xFF4D4D4D)
+                            )
+                        },
+                        onClick = {
+                            onValueSelected(value)
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
     }

@@ -41,7 +41,9 @@ import com.aarav.medcare.components.TagChip
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun ArticleDetailScreen() {
+fun ArticleDetailScreen(
+    back: () -> Unit
+) {
 
     Scaffold(
         topBar = {
@@ -49,7 +51,9 @@ fun ArticleDetailScreen() {
                 title = {},
                 navigationIcon = {
                     IconButton(
-                        onClick = { }
+                        onClick = {
+                            back()
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,

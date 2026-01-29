@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -64,7 +65,10 @@ enum class ArticleChips(val label: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun ArticleScreen() {
+fun ArticleScreen(
+    back: () -> Unit,
+    navigateToDetail: () -> Unit,
+) {
 
     var isExpanded by remember {
         mutableStateOf(false)
@@ -138,7 +142,9 @@ fun ArticleScreen() {
         ) {
             AnimatedVisibility(!expanded) {
                 IconButton(
-                    onClick = {}
+                    onClick = {
+                        back()
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowLeft,
@@ -174,6 +180,7 @@ fun ArticleScreen() {
 
                 HorizontalPager(
                     state = pagerState,
+                    reverseLayout = true,
                     snapPosition = SnapPosition.Start,
                     pageSpacing = 12.dp,
                     modifier = Modifier.padding(vertical = 0.dp),
@@ -227,7 +234,7 @@ fun ArticleScreen() {
                 val latestArticle = ServiceData.latestArticle
 
                 latestArticle.forEach { article ->
-                    ArticleCard(article)
+                    ArticleCard(article, navigateToDetail)
                 }
             }
         }
@@ -359,7 +366,8 @@ fun ArticleChipRow(
 @Preview(showBackground = true)
 @Composable
 fun ArticleCard(
-    article: Article
+    article: Article,
+    navigateToDetail: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -367,6 +375,9 @@ fun ArticleCard(
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .fillMaxWidth()
+            .clickable {
+                navigateToDetail()
+            }
     ) {
         androidx.compose.material3.Surface(
             shape = RoundedCornerShape(6.dp)
