@@ -245,27 +245,27 @@ fun HistoryScreen(
             val upcoming = appointmentList.filter { !it.isCompleted }
             val completed = appointmentList.filter { it.isCompleted }
 
-            if (!upcoming.isEmpty() && selectedIndex == 0) {
-                UpcomingEmpty()
-            }
-
-            if (!completed.isEmpty() && selectedIndex == 1) {
-                CompletedEmpty()
-            }
-
-//            if (!upcoming.isEmpty() || !completed.isEmpty()) {
-//                LazyColumn() {
-//                    if (selectedIndex == 0) {
-//                        items(upcoming) { appointment ->
-//                            AppointmentCard(appointment)
-//                        }
-//                    } else {
-//                        items(completed) { appointment ->
-//                            AppointmentCard(appointment)
-//                        }
-//                    }
-//                }
+//            if (!upcoming.isEmpty() && selectedIndex == 0) {
+//                UpcomingEmpty()
 //            }
+//
+//            if (!completed.isEmpty() && selectedIndex == 1) {
+//                CompletedEmpty()
+//            }
+
+            if (!upcoming.isEmpty() || !completed.isEmpty()) {
+                LazyColumn() {
+                    if (selectedIndex == 0) {
+                        items(upcoming) { appointment ->
+                            AppointmentCard(appointment)
+                        }
+                    } else {
+                        items(completed) { appointment ->
+                            AppointmentCard(appointment)
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -67,7 +67,7 @@ import com.aarav.medcare.services.ServiceData
 import com.aarav.medcare.ui.theme.sora
 
 enum class ShoppingFilters(val label: String) {
-    MEDICINE_TREATMENT("Milk & Treatments"),
+    MEDICINE_TREATMENT("Medicine & Treatments"),
     MILK("Milk"),
     SEXUAL_HEALTH("Sexual Health")
 }

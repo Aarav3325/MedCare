@@ -80,6 +80,7 @@ import com.aarav.medcare.ui.theme.sora
 fun DoctorDetailScreen(
     back: () -> Unit,
     navigateToConfirmation: () -> Unit,
+    navigateToChat: () -> Unit,
 ) {
 
     Scaffold(
@@ -173,7 +174,9 @@ fun DoctorDetailScreen(
             ) {
                 FilledTonalButton(
                     modifier = Modifier.height(48.dp).weight(1f),
-                    onClick = {},
+                    onClick = {
+                        navigateToChat()
+                    },
                     shape = RoundedCornerShape(24.dp),
                     border = BorderStroke(1.dp, Color(0xFF26408B)),
                     colors = ButtonDefaults.buttonColors(

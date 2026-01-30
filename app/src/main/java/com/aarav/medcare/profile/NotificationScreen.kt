@@ -74,51 +74,51 @@ fun NotificationScreen(
 
         val notificationList = ProfileData.notificationList
 
-//        LazyColumn(
-//            modifier = Modifier.padding(it)
-//        ) {
-//            items(notificationList) { notification ->
-//                NotificationCard(notification)
-//            }
-//        }
-
-        Box(
-            modifier = Modifier.fillMaxSize().padding(it)
-                .padding(bottom = 80.dp),
-            contentAlignment = Alignment.Center
+        LazyColumn(
+            modifier = Modifier.padding(it)
         ) {
-            Column(
-                modifier = Modifier.padding(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.empty_notification),
-                    contentDescription = "empty",
-                    modifier = Modifier.size(128.dp)
-                )
-
-                Spacer(Modifier.height(16.dp))
-
-                Text(
-                    "There is nothing here",
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black,
-                    fontSize = 14.sp,
-                    fontFamily = sora,
-                )
-
-                Spacer(Modifier.height(8.dp))
-
-                Text(
-                    "We’ll use this space to alert you on orders and promos",
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFF4D4D4D),
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center,
-                    fontFamily = sora,
-                )
+            items(notificationList) { notification ->
+                NotificationCard(notification)
             }
         }
+
+//        Box(
+//            modifier = Modifier.fillMaxSize().padding(it)
+//                .padding(bottom = 80.dp),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Column(
+//                modifier = Modifier.padding(32.dp),
+//                horizontalAlignment = Alignment.CenterHorizontally
+//            ) {
+//                Image(
+//                    painter = painterResource(R.drawable.empty_notification),
+//                    contentDescription = "empty",
+//                    modifier = Modifier.size(128.dp)
+//                )
+//
+//                Spacer(Modifier.height(16.dp))
+//
+//                Text(
+//                    "There is nothing here",
+//                    fontWeight = FontWeight.SemiBold,
+//                    color = Color.Black,
+//                    fontSize = 14.sp,
+//                    fontFamily = sora,
+//                )
+//
+//                Spacer(Modifier.height(8.dp))
+//
+//                Text(
+//                    "We’ll use this space to alert you on orders and promos",
+//                    fontWeight = FontWeight.Normal,
+//                    color = Color(0xFF4D4D4D),
+//                    fontSize = 12.sp,
+//                    textAlign = TextAlign.Center,
+//                    fontFamily = sora,
+//                )
+//            }
+//        }
     }
 }
 

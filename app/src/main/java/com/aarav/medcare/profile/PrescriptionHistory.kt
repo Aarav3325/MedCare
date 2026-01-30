@@ -165,7 +165,7 @@ fun PrescriptionRecipe(
             Row(
                 modifier = Modifier.fillMaxWidth()
                     .background(Color(0xFFE3E3E3))
-                    .padding(8.dp)
+                    .padding(4.dp)
                 ,
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -175,7 +175,7 @@ fun PrescriptionRecipe(
                     fontFamily = sora,
                     color = Color(0xFF4D4D4D),
                     fontWeight = FontWeight.W400,
-                    fontSize = 10.sp
+                    fontSize = 12.sp
                 )
             }
         }

@@ -27,9 +27,12 @@ import com.aarav.medcare.services.ServicesScreen
 import com.aarav.medcare.services.article.ArticleDetailScreen
 import com.aarav.medcare.services.article.ArticleScreen
 import com.aarav.medcare.services.chatdoctor.AppointmentSuccessScreen
+import com.aarav.medcare.services.chatdoctor.CallScreen
 import com.aarav.medcare.services.chatdoctor.ChatDoctorScreen
+import com.aarav.medcare.services.chatdoctor.ChatScreen
 import com.aarav.medcare.services.chatdoctor.ConfirmationScreen
 import com.aarav.medcare.services.chatdoctor.DoctorDetailScreen
+import com.aarav.medcare.services.chatdoctor.VideoCallScreen
 import com.aarav.medcare.services.hospital.HospitalDetailScreen
 import com.aarav.medcare.services.hospital.HospitalListScreen
 import com.aarav.medcare.services.hospital.HospitalMapScreen
@@ -79,6 +82,10 @@ fun NavGraph(navHostController: NavHostController, modifier: Modifier) {
         AddTransactionsScreen(navHostController, this)
         AddAccountSettingsScreen(navHostController, this)
         AddNotificationsScreen(navHostController, this)
+        addChatDoctorScreen(navHostController, this)
+        AddChatScreen(navHostController, this)
+        AddVideoCallScreen(navHostController, this)
+        AddCallScreen(navHostController, this)
     }
 }
 
@@ -261,6 +268,9 @@ fun addDoctorDetailScreen(navController: NavController, navGraphBuilder: NavGrap
             },
             navigateToConfirmation = {
                 navController.navigate(NavRoute.Confirmation.path)
+            },
+            navigateToChat = {
+                navController.navigate(NavRoute.Chat.path)
             }
         )
     }
@@ -557,6 +567,44 @@ fun AddNotificationsScreen(navController: NavController, navGraphBuilder: NavGra
         route = NavRoute.Notifications.path
     ) {
         NotificationScreen(
+            back = {
+                navController.popBackStack()
+            }
+        )
+    }
+}
+
+fun AddChatScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Chat.path
+    ) {
+        ChatScreen(
+            back = {
+                navController.popBackStack()
+            },
+            navigateToVideoCall = {
+                navController.navigate(NavRoute.VideoCall.path)
+            },
+            navigateToCall = {
+                navController.navigate(NavRoute.Call.path)
+            }
+        )
+    }
+}
+
+fun AddVideoCallScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.VideoCall.path
+    ) {
+        VideoCallScreen()
+    }
+}
+
+fun AddCallScreen(navController: NavController, navGraphBuilder: NavGraphBuilder) {
+    navGraphBuilder.composable(
+        route = NavRoute.Call.path
+    ) {
+        CallScreen(
             back = {
                 navController.popBackStack()
             }

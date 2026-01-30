@@ -1,5 +1,6 @@
 package com.aarav.medcare.services
 
+import android.os.Message
 import com.aarav.medcare.R
 import com.aarav.medcare.home.Doctor
 import com.aarav.medcare.services.article.ArticleChips
@@ -53,6 +54,11 @@ data class Article(
     val image: Int,
     val title: String,
     val tag: ArticleChips? = null
+)
+
+data class Chat(
+    val message: String,
+    val sent: Boolean
 )
 
 object ServiceData {
@@ -308,6 +314,34 @@ object ServiceData {
             R.drawable.article_image6,
             "Getting to know Hanta Virus Disease from Rodents",
             ArticleChips.ADULTS
+        ),
+    )
+
+    val chats = listOf(
+        Chat(
+            "Hello Doctor! I'd like to schedule an appointment for a medical consultation",
+            true
+        ),
+        Chat(
+            "Hello! Of course, I'm glad to assist you. What health concerns are you experiencing?",
+            false
+        ),
+        Chat(
+            "I've been experiencing constant headaches over the past few days",
+            true
+        ),
+        Chat(
+            "I understand. Let's schedule your appointment. Do you have any specific time preferences?",
+            false
+        ),
+        Chat(
+            "I prefer Monday mornings, if possible.",
+            true
+        ),
+
+        Chat(
+            "I understand. Let's schedule your appointment. Do you have any specific time preferences?",
+            false
         ),
     )
 }
